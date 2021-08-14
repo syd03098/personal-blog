@@ -56,7 +56,7 @@ export const StyledLineNo = styled.span`
   text-align: right;
   padding-right: 20px;
   user-select: none;
-  opacity: 0.55;
+  opacity: 0.6;
 `;
 
 export const $tableCell = styled.span`
