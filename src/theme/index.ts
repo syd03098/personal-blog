@@ -1,8 +1,16 @@
-import { Theme } from '@theme/types';
+import { BreakPoints, StyledTheme } from '@theme/types';
 
-export const darkTheme: Theme = {
+const breakpoints: BreakPoints = {
+  breakpoints: {
+    mobile: '420px',
+    tablet: '768px',
+    laptop: '1024px',
+  },
+};
+
+export const darkTheme: StyledTheme = {
   background: {
-    main: '#111111',
+    main: '#0d1111',
   },
   text: {
     header: '#ededed',
@@ -11,17 +19,18 @@ export const darkTheme: Theme = {
     smoke: '#838383',
   },
   border: {
-    primary100: '#474747',
+    primary: '#474747',
   },
   palette: {
     emphasis: '#58a6ff',
     selection: '#40dbec',
-    codeBlock: '#1e2128',
+    codeBlock: '#1a202a',
     inlineCodeBlock: '#343434',
   },
+  ...breakpoints,
 };
 
-export const lightTheme: Theme = {
+export const lightTheme: StyledTheme = {
   background: {
     main: '',
   },
@@ -32,7 +41,7 @@ export const lightTheme: Theme = {
     smoke: '',
   },
   border: {
-    primary100: '',
+    primary: '',
   },
   palette: {
     emphasis: '',
@@ -40,4 +49,5 @@ export const lightTheme: Theme = {
     codeBlock: '',
     inlineCodeBlock: '',
   },
+  ...breakpoints,
 };
