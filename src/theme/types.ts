@@ -9,7 +9,7 @@ export interface Theme {
     smoke: string;
   };
   border: {
-    primary100: string;
+    primary: string;
   };
   palette: {
     emphasis: string;
@@ -18,3 +18,13 @@ export interface Theme {
     inlineCodeBlock: string;
   };
 }
+
+export interface BreakPoints {
+  breakpoints: {
+    mobile: string;
+    tablet: string;
+    laptop: string;
+  };
+}
+
+export type StyledTheme = BreakPoints & Theme;
