@@ -44,7 +44,7 @@ export const $pre = styled.pre`
   position: relative;
   border-radius: 8px;
   letter-spacing: normal;
-  font-size: 15px;
+  font-size: 90%;
 `;
 
 export const $tableRow = styled.div`

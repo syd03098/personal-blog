@@ -35,13 +35,21 @@ const StyledPostTitle = styled.h2`
   font-weight: 700;
   line-height: normal;
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 20px;
+  }
 `;
 
 const StyledPostSummary = styled.p`
   color: ${({ theme }) => theme.text.smoke};
   word-break: break-word;
   margin: 0;
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 15px;
+  }
 `;
 
 const StyledPostTagList = styled.div`

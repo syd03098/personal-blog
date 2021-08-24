@@ -17,15 +17,23 @@ const Typography = ({
 );
 
 const StyledTypography = styled.h1`
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 800;
   color: ${({ theme }) => theme.text.header};
   word-break: break-word;
+  line-height: normal;
   margin: 0;
 
   &.small {
-    font-size: 34px;
-    line-height: normal;
+    font-size: 32px;
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 36px;
+
+    &.small {
+      font-size: 28px;
+    }
   }
 `;
 

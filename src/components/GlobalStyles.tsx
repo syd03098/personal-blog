@@ -23,7 +23,7 @@ const globalStyle = css`
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    line-height: 1.65;
+    line-height: 1.85;
     letter-spacing: 0.03em;
     background-color: ${({ theme }) => theme.background.main};
     color: ${({ theme }) => theme.text.plain};

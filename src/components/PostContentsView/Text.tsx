@@ -57,7 +57,8 @@ const $InlineCode = styled.code`
   font-family: 'PT Mono', 'Menlo', 'Source Code Pro', monospace;
   color: ${({ theme }) => theme.text.plain};
   border-radius: 4px;
-  padding: 4px 6px;
+  font-size: 90%;
+  padding: 3px 6px;
   background-color: ${({ theme }) => theme.palette.inlineCodeBlock};
 `;
 
