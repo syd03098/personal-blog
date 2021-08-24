@@ -46,7 +46,7 @@ const PostDetailRow = ({ post }: Props): JSX.Element => {
 export default memo(PostDetailRow);
 
 const StyledDetailRow = styled.section`
-  margin-bottom: 36px;
+  margin-bottom: 48px;
 `;
 
 const StyledDate = styled.time`
@@ -72,7 +72,7 @@ const StyledTag = styled.div`
   font-weight: bolder;
   font-size: 14px;
   padding: 6px;
-  border: 2px solid ${({ theme }) => theme.border.primary100};
+  border: 2px solid ${({ theme }) => theme.border.primary};
   background-color: transparent;
   border-radius: 8px;
   opacity: 0.9;

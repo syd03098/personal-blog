@@ -126,22 +126,22 @@ const $article = styled.article`
 const $h2 = styled.h2`
   font-size: 28px;
   font-weight: 700;
-  margin-top: 24px;
-  margin-bottom: 16px;
+  margin-top: 36px;
+  margin-bottom: 0;
   color: ${({ theme }) => theme.text.subHeader};
 `;
 
 const $h3 = styled.h3`
   font-size: 24px;
   font-weight: 700;
-  margin-top: 24px;
-  margin-bottom: 16px;
+  margin-top: 36px;
+  margin-bottom: 0;
   color: ${({ theme }) => theme.text.subHeader};
 `;
 
 const $blockQuote = styled.blockquote`
   margin: 20px 0;
-  padding-left: 16px;
+  padding-left: 20px;
   border-left: 3px solid ${({ theme }) => theme.text.plain};
 `;
 
@@ -155,7 +155,8 @@ const $li = styled.li`
 `;
 
 const $paragraph = styled.p`
-  margin: 16px 0;
+  margin: 20px 0;
+
   &.gray {
     color: ${({ theme }) => theme.text.smoke};
   }

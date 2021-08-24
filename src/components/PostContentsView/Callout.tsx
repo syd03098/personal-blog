@@ -25,7 +25,7 @@ const StyledCalloutBlock = styled.div`
   display: flex;
   width: 100%;
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.border.primary100};
+  border: 1px solid ${({ theme }) => theme.border.primary};
   padding: 16px 16px 16px 12px;
   margin: 20px 0;
 `;
