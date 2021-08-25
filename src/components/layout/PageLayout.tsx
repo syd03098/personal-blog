@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledContentsHeader = styled.div`
-  margin-bottom: 96px;
+  margin-bottom: 72px;
 `;
 
 export default PageLayout;

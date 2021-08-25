@@ -25,8 +25,8 @@ const StyledLayout = styled.div`
 
 const StyledContents = styled.main`
   position: relative;
-  padding-top: 36px;
-  padding-bottom: 36px;
+  padding-top: 48px;
+  padding-bottom: 24px;
 `;
 
 export default RootLayout;
