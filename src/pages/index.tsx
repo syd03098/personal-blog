@@ -34,7 +34,7 @@ const Home = ({ posts }: Props): JSX.Element => {
         }}
       />
       <PageLayout
-        title={<Typography type="small">Recently Posted</Typography>}
+        title={<Typography>Latest</Typography>}
         body={
           <>
             {posts.slice(0, 5).map((post) => (

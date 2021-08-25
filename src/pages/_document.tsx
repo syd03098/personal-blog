@@ -13,7 +13,9 @@ class MyDocument extends Document {
     return (
       <Html lang="ko">
         <Head>
+          {/* default favicon */}
           <link rel="icon" href="/static/favicon.ico" />
+          {/* google analytics 스크립트 */}
           {process.env.NODE_ENV === 'production' && (
             <>
               <script
@@ -32,6 +34,11 @@ class MyDocument extends Document {
               />
             </>
           )}
+          {/* Noto Sans KR 폰트 */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Noto+Sans+KR:wght@700&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

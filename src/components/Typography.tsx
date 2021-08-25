@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import styled from '@theme/styled';
 
-type HeaderType = 'small' | 'default';
+type HeaderType = 'sm' | 'md' | 'default';
 
 interface Props {
   type?: HeaderType;
@@ -17,23 +17,23 @@ const Typography = ({
 );
 
 const StyledTypography = styled.h1`
+  font-family: 'Noto Sans KR', 'sans-serif';
   font-size: 42px;
-  font-weight: 800;
+  font-weight: 700;
   color: ${({ theme }) => theme.text.header};
   word-break: break-word;
-  line-height: normal;
+  line-height: 1.4;
   margin: 0;
 
-  &.small {
-    font-size: 32px;
+  &.md {
+    font-size: 36px;
+    line-height: 1.2;
   }
 
-  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 36px;
-
-    &.small {
-      font-size: 28px;
-    }
+  &.sm {
+    font-size: 24px;
+    line-height: 1.2;
+    color: ${({ theme }) => theme.text.subHeader};
   }
 `;
 

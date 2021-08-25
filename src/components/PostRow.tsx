@@ -2,6 +2,7 @@ import React from 'react';
 import { Post } from '@lib/types';
 import styled from '@theme/styled';
 import NextLink from '@components/NextLink';
+import Typography from '@components/Typography';
 
 interface Props {
   post: Post;
@@ -10,9 +11,9 @@ interface Props {
 const PostRow = ({ post }: Props): JSX.Element => {
   return (
     <StyledPostRow>
-      <StyledPostTitle>
+      <Typography type="sm">
         <NextLink href={`/post/${post.id}`}>{post.title}</NextLink>
-      </StyledPostTitle>
+      </Typography>
       <StyledPostSummary>{post.summary}</StyledPostSummary>
       <StyledPostTagList>
         {post.tags.map((tag) => (
@@ -30,26 +31,11 @@ const StyledPostRow = styled.div`
   margin-bottom: 48px;
 `;
 
-const StyledPostTitle = styled.h2`
-  font-size: 24px;
-  font-weight: 700;
-  line-height: normal;
-  margin-top: 0;
-  margin-bottom: 8px;
-
-  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 20px;
-  }
-`;
-
 const StyledPostSummary = styled.p`
   color: ${({ theme }) => theme.text.smoke};
   word-break: break-word;
-  margin: 0;
-
-  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 15px;
-  }
+  margin-top: 16px;
+  margin-bottom: 0;
 `;
 
 const StyledPostTagList = styled.div`
