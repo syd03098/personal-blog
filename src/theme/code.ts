@@ -3,9 +3,9 @@ import { css } from 'styled-components';
 export default css`
   code[class*='language-'],
   pre[class*='language-'] {
-    font-family: 'PT Mono', 'Monaco', 'Courier New', monospace;
+    font-family: 'PT Mono', 'Monaco', Consolas, Menlo, Courier, monospace;
 
-    color: ${({ theme }) => theme.text.plain};
+    color: ${({ theme }) => theme.code.plain};
     background: none;
     text-align: left;
     white-space: pre;
@@ -37,64 +37,98 @@ export default css`
     white-space: normal;
   }
 
-  pre[class*='language-html'] {
-    .token.tag {
-      color: rgb(86, 156, 214);
-    }
-    .token.attr-name {
-      color: #67b7a4;
-    }
-    .token.attr-value {
-      color: #d0bf96;
-    }
-  }
-
   /* 공통 태그 */
   pre[class*='language-'] {
+    .token.comment,
     .token.prolog,
-    .token.comment {
-      color: #6c7986;
+    .token.doctype,
+    .token.cdata {
+      color: ${({ theme }) => theme.code.comment};
     }
 
-    .token.punctuation,
-    .token.operator {
-      color: ${({ theme }) => theme.text.plain};
-    }
-
-    .token.class-name {
-      color: #9ef1dd;
+    .token.delimiter.important,
+    .token.selector .parent,
+    .token.tag,
+    .token.tag .token.punctuation {
+      color: ${({ theme }) => theme.code.className};
     }
 
     .token.attr-name,
-    .token.function,
-    .token.variable {
-      color: #67b7a4;
-    }
-
-    .token.selector,
-    .token.char,
-    .token.builtin,
-    .token.changed,
-    .token.keyword {
-      color: #fc5fa3;
-    }
-
-    .token.string,
-    .token.number,
     .token.boolean,
-    .token.inserted,
-    .token.attr-value {
-      color: #d0bf69;
+    .token.boolean.important,
+    .token.number,
+    .token.constant,
+    .token.selector .token.attribute {
+      color: ${({ theme }) => theme.code.number};
     }
 
-    /* 볼드, 이탤릭 */
+    .token.class-name,
+    .token.key,
+    .token.parameter,
+    .token.property,
+    .token.property-access,
+    .token.variable {
+      color: ${({ theme }) => theme.code.className};
+    }
+
+    .token.attr-value,
+    .token.inserted,
+    .token.color,
+    .token.selector .token.value,
+    .token.string,
+    .token.string .token.url-link {
+      color: ${({ theme }) => theme.code.string};
+    }
+
+    .token.builtin,
+    .token.keyword-array,
+    .token.package,
+    .token.regex {
+      color: ${({ theme }) => theme.code.class};
+    }
+
+    .token.function,
+    .token.selector .token.class,
+    .token.selector .token.id {
+      color: ${({ theme }) => theme.code.class};
+    }
+
+    .token.atrule .token.rule,
+    .token.combinator,
+    .token.keyword,
+    .token.operator,
+    .token.pseudo-class,
+    .token.pseudo-element,
+    .token.selector,
+    .token.unit {
+      color: ${({ theme }) => theme.code.keyword};
+    }
+
+    .token.deleted,
+    .token.important {
+      color: ${({ theme }) => theme.code.important};
+    }
+
+    .token.keyword-this,
+    .token.this {
+      color: ${({ theme }) => theme.code.this};
+    }
+
     .token.important,
+    .token.keyword-this,
+    .token.this,
     .token.bold {
       font-weight: bold;
     }
+
+    .token.delimiter.important {
+      font-weight: inherit;
+    }
+
     .token.italic {
       font-style: italic;
     }
+
     .token.entity {
       cursor: help;
     }

@@ -17,6 +17,16 @@ export interface Theme {
     codeBlock: string;
     inlineCodeBlock: string;
   };
+  code: {
+    plain: string;
+    keyword: string;
+    comment: string;
+    className: string;
+    class: string;
+    string: string;
+    number: string;
+    important: string;
+  };
 }
 
 export interface BreakPoints {

@@ -24,8 +24,18 @@ export const darkTheme: StyledTheme = {
   palette: {
     emphasis: '#58a6ff',
     selection: '#40dbec',
-    codeBlock: '#1a202a',
-    inlineCodeBlock: '#343434',
+    codeBlock: '#111b27',
+    inlineCodeBlock: '#22364e',
+  },
+  code: {
+    plain: '#e3eaf2',
+    keyword: '#e9ae7e',
+    comment: '#8da1b9',
+    className: '#6cb8e6',
+    class: '#c699e3',
+    string: '#91d076',
+    number: '#e6d37a',
+    important: '#cd6660',
   },
   ...breakpoints,
 };
@@ -48,6 +58,16 @@ export const lightTheme: StyledTheme = {
     selection: '',
     codeBlock: '',
     inlineCodeBlock: '',
+  },
+  code: {
+    plain: '',
+    keyword: '',
+    comment: '',
+    className: '',
+    class: '',
+    string: '',
+    number: '',
+    important: '',
   },
   ...breakpoints,
 };
