@@ -7,6 +7,7 @@ import Document, {
   Head,
   Main,
 } from 'next/document';
+import Script from 'next/script';
 
 class MyDocument extends Document {
   render(): JSX.Element {
@@ -18,11 +19,11 @@ class MyDocument extends Document {
           {/* google analytics 스크립트 */}
           {process.env.NODE_ENV === 'production' && (
             <>
-              <script
+              <Script
                 async
                 src="https://www.googletagmanager.com/gtag/js?id=G-BZBFZDEB95"
               />
-              <script
+              <Script
                 dangerouslySetInnerHTML={{
                   __html: `
               window.dataLayer = window.dataLayer || [];
@@ -36,7 +37,7 @@ class MyDocument extends Document {
           )}
           {/* Noto Sans KR 폰트 */}
           <link
-            href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Noto+Sans+KR:wght@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap"
             rel="stylesheet"
           />
         </Head>
