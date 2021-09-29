@@ -10,7 +10,7 @@ import { NextSeo } from 'next-seo';
 import { ExtendedRecordMap } from 'notion-types';
 import { Post } from '@lib/types';
 import { PostContentsView } from '@components/PostContentsView';
-import PostDetailRow from '@components/PostDetailRow';
+import PostSummary from '@components/PostContentsView/PostSummary';
 
 interface Props {
   recordMap: ExtendedRecordMap;
@@ -70,7 +70,7 @@ export const Article = ({
           type: 'article',
         }}
       />
-      <PostDetailRow post={pageDetail} />
+      <PostSummary post={pageDetail} />
       <PostContentsView recordMap={recordMap} />
     </>
   );
