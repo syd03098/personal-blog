@@ -16,11 +16,13 @@ export const notionhq = new Client({
   auth: process.env.NOTION_INTEGRATION_TOKEN,
 });
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export const getAllPublishedPosts = async ({ option }: Props = {}): Promise<
   Post[]
 > => {
   const customFilter: SinglePropertyFilter[] = [
-    process.env.NODE_ENV === 'production'
+    isProduction
       ? {
           property: 'published',
           checkbox: {
@@ -39,7 +41,7 @@ export const getAllPublishedPosts = async ({ option }: Props = {}): Promise<
     sorts: [
       {
         property: 'created',
-        direction: 'descending',
+        direction: isProduction ? 'descending' : 'ascending',
       },
     ],
   });
@@ -70,18 +72,13 @@ export const getAllTagName = async (): Promise<string[]> => {
 };
 
 export const getCountOfPostsFromTags = async (): Promise<PostTags[]> => {
-  const tags: string[] = (await getAllPublishedPosts()).reduce((acc, cur) => {
-    cur.tags.forEach((tag) => acc.push(tag));
-    return acc;
-  }, []);
+  const tags = [...(await getAllPublishedPosts())]
+    .map(({ tags: tagList }) => tagList)
+    .flat(1);
 
   return Array.from(new Set(tags))
-    .reduce((acc, cur) => {
-      acc.push({
-        tagName: cur,
-        count: tags.filter((tag) => tag === cur).length,
-      });
-      return acc;
-    }, [])
+    .map((tagName) => {
+      return { tagName, count: [...tags.filter((t) => t === tagName)].length };
+    })
     .sort((a, b) => b.count - a.count);
 };
