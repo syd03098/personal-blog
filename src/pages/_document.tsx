@@ -7,7 +7,6 @@ import Document, {
   Head,
   Main,
 } from 'next/document';
-import Script from 'next/script';
 
 class MyDocument extends Document {
   render(): JSX.Element {
@@ -16,25 +15,6 @@ class MyDocument extends Document {
         <Head>
           {/* default favicon */}
           <link rel="icon" href="/static/favicon.ico" />
-          {/* google analytics 스크립트 */}
-          {process.env.NODE_ENV === 'production' && (
-            <>
-              <Script
-                async
-                src="https://www.googletagmanager.com/gtag/js?id=G-BZBFZDEB95"
-              />
-              <Script
-                dangerouslySetInnerHTML={{
-                  __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-BZBFZDEB95');
-              `,
-                }}
-              />
-            </>
-          )}
           {/* Noto Sans KR 폰트 */}
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap"
