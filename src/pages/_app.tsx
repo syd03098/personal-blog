@@ -5,6 +5,7 @@ import { AppProps } from 'next/app';
 import GlobalStyles from '@components/GlobalStyles';
 import RootLayout from '@components/layout/RootLayout';
 import { DefaultSeo } from 'next-seo';
+import Script from 'next/script';
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
@@ -25,6 +26,25 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
           { httpEquiv: 'x-ua-compatible', content: 'IE=edge' },
         ]}
       />
+      {/* google analytics 스크립트 */}
+      {process.env.NODE_ENV === 'production' && (
+        <>
+          <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-BZBFZDEB95"
+          />
+          <Script
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BZBFZDEB95');
+              `,
+            }}
+          />
+        </>
+      )}
       <ThemeProvider theme={darkTheme}>
         {/* todo: lightMode 구현 */}
         <GlobalStyles />
