@@ -2,40 +2,35 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    node: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
-  plugins: ['react-hooks', '@typescript-eslint', 'prettier'],
+  extends: [
+    'next',
+
+    // configs for js files
+    'airbnb',
+    'airbnb/hooks',
+
+    // dependencies on @typescript-eslint/eslint-plugin
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
+  plugins: [
+    'simple-import-sort',
+
+    // dependencies on @typescript-eslint/eslint-plugin
+    '@typescript-eslint',
+  ],
   rules: {
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/camelcase': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-    'react/display-name': 'off',
-    'react/jsx-filename-extension': 'off',
-    'react/require-default-props': 'off',
-    'react/jsx-props-no-spreading': 'off',
-    'react/jsx-pascal-case': 'off',
-    'no-console': 'off',
-    'import/no-unresolved': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+
     'no-use-before-define': 'off',
+    'no-undef': 'off',
+
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+    'react/jsx-no-useless-fragment': 'off',
   },
 };
