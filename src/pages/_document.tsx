@@ -1,27 +1,20 @@
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
-import { ServerStyleSheet } from 'styled-components';
-import Document, {
-  DocumentContext,
-  NextScript,
-  Html,
-  Head,
-  Main,
-} from 'next/document';
 
 class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang="ko">
         <Head>
-          {/* default favicon */}
           <link rel="icon" href="/static/favicon.ico" />
-          {/* Noto Sans KR 폰트 */}
-          <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap"
-            rel="stylesheet"
-          />
         </Head>
         <body>
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: innerHtml,
+            }}
+          />
           <Main />
           <NextScript />
         </body>
@@ -30,29 +23,29 @@ class MyDocument extends Document {
   }
 }
 
-MyDocument.getInitialProps = async (context: DocumentContext) => {
-  const sheet = new ServerStyleSheet();
-  const originalRenderPage = context.renderPage;
+const innerHtml = `(function() {
+  ${setInitialColorMode.toString()}
+  setInitialColorMode();
+})()`;
 
-  try {
-    context.renderPage = () =>
-      originalRenderPage({
-        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
-      });
+function setInitialColorMode() {
+  function getInitialTheme() {
+    const preference = localStorage.getItem('theme');
 
-    const initialProps = await Document.getInitialProps(context);
-    return {
-      ...initialProps,
-      styles: (
-        <>
-          {initialProps.styles}
-          {sheet.getStyleElement()}
-        </>
-      ),
-    };
-  } finally {
-    sheet.seal();
+    if (typeof preference === 'string') {
+      return preference;
+    }
+
+    return 'dark';
   }
-};
+
+  const theme = getInitialTheme();
+  const root = document.documentElement;
+  root.style.setProperty('--initial-color-mode', theme);
+
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+}
 
 export default MyDocument;

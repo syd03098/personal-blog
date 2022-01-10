@@ -1,48 +1,35 @@
-import React, { forwardRef, PropsWithChildren, ReactNode } from 'react';
+import { css } from '@emotion/react';
 import Link from 'next/link';
-import styled from '@theme/styled';
+import React, { AnchorHTMLAttributes, PropsWithChildren } from 'react';
 
-interface Props {
-  href: string;
-  scroll?: boolean;
-  shallow?: boolean;
-  children: ReactNode;
+type LinkProps = { href: string } & Omit<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  'href'
+>;
+
+function NextLink({ href, children, ...rest }: PropsWithChildren<LinkProps>) {
+  const isInternalLink = href.startsWith('/');
+
+  if (isInternalLink) {
+    return (
+      <Link href={href} passHref>
+        <a css={linkCss} {...rest}>
+          {children}
+        </a>
+      </Link>
+    );
+  }
+
+  return (
+    <a css={linkCss} target="_blank" rel="noreferrer" href={href} {...rest}>
+      {children}
+    </a>
+  );
 }
 
-const NextLink = forwardRef<HTMLAnchorElement, PropsWithChildren<Props>>(
-  (
-    { href, scroll, shallow, children, ...rest }: PropsWithChildren<Props>,
-    ref,
-  ) => {
-    const isInternalLink = href && href.startsWith('/');
-
-    if (isInternalLink) {
-      return (
-        <Link href={href} scroll={scroll} shallow={shallow} passHref>
-          <StyledAnchor ref={ref} {...rest}>
-            {children}
-          </StyledAnchor>
-        </Link>
-      );
-    }
-
-    return (
-      <StyledAnchor
-        ref={ref}
-        target="_blank"
-        rel="noreferrer"
-        href={href}
-        {...rest}
-      >
-        {children}
-      </StyledAnchor>
-    );
-  },
-);
-
-const StyledAnchor = styled.a`
+const linkCss = css`
   text-decoration: none;
-  color: inherit;
+  color: currentColor;
 `;
 
 export default NextLink;

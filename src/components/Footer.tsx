@@ -1,51 +1,44 @@
-import React from 'react';
-import styled from '@theme/styled';
 import NextLink from '@components/NextLink';
+import { css } from '@emotion/react';
+import React from 'react';
 
-const Footer = (): JSX.Element => {
+function Footer(): JSX.Element {
   return (
-    <StyledFooter>
-      <StyledAuthorDetails>
-        <p>© Yongho Kim 2021</p>
-        <p>
-          🛠 &nbsp;Built by&nbsp;
-          <NextLink href="https://nextjs.org/">Next.js&nbsp;</NextLink>
-          &&nbsp;
-          <NextLink href="https://styled-components.com/">
-            Styled-components&nbsp;
-          </NextLink>
-          &&nbsp;
-          <NextLink href="https://developers.notion.com/docs/getting-started">
-            Notion-beta
-          </NextLink>
-        </p>
-      </StyledAuthorDetails>
-    </StyledFooter>
+    <footer css={flexColumnCss}>
+      <p css={paragraph}>© Yongho Kim 2021 All Rights Reserved.</p>
+      <p css={paragraph}>
+        Built by&nbsp;
+        <NextLink href="https://nextjs.org/">Next.js&nbsp;</NextLink>
+        &&nbsp;
+        <NextLink href="https://emotion.sh/docs/introduction">
+          @emotion&nbsp;
+        </NextLink>
+        &&nbsp;
+        <NextLink href="https://developers.notion.com/docs/getting-started">
+          Notion-beta
+        </NextLink>
+      </p>
+    </footer>
   );
-};
+}
 
-const StyledFooter = styled.footer`
-  padding-top: 64px;
-  padding-bottom: 64px;
-`;
-
-const StyledAuthorDetails = styled.div`
+const flexColumnCss = css`
   display: flex;
   flex-direction: column;
   text-align: left;
+  margin: 36px 0;
+`;
 
-  p {
-    margin: 0;
-    letter-spacing: normal;
-    color: ${({ theme }) => theme.text.smoke};
+const paragraph = css`
+  font-size: 14px;
+  color: var(--text-smoke);
+  word-break: break-all;
+  letter-spacing: normal;
+  margin: 0;
 
-    &:last-child {
-      font-size: 14px;
-      word-break: break-all;
-      a {
-        color: ${({ theme }) => theme.text.plain};
-      }
-    }
+  a {
+    color: var(--text-plain);
+    font-weight: 600;
   }
 `;
 

@@ -1,26 +1,16 @@
-export interface Post {
-  id?: string;
+export interface Post extends PostSummary {
+  createdAt: number;
+  lastUpdatedAt: number;
+}
+
+export interface PostSummary {
+  id: string;
   title: string;
   summary: string;
-  tags: string[];
-  createdAt?: number;
-  lastUpdatedAt?: number;
+  tags: (string | undefined)[];
 }
 
-export interface PostTags {
-  tagName: string;
+export interface Tag {
+  label?: string;
   count: number;
-}
-
-export type TimeLabel =
-  | 'year'
-  | 'month'
-  | 'day'
-  | 'hour'
-  | 'minutes'
-  | 'just a minutes ago';
-
-export interface TimeInterval {
-  label: TimeLabel;
-  seconds: number;
 }

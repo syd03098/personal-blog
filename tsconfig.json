@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -19,13 +19,26 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@pages/*": ["src/pages/*"],
-      "@components/*": ["src/components/*"],
-      "@icons/*": ["src/components/icons/*"],
-      "@theme/*": ["src/theme/*"],
-      "@lib/*": ["src/lib/*"]
-    }
+      "@src/*": [
+        "src/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@icons/*": [
+        "src/components/icons/*"
+      ],
+      "@theme/*": [
+        "src/theme/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ]
+    },
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",

@@ -1,20 +1,20 @@
-import React from 'react';
-import { GetStaticPropsResult } from 'next';
-import { getAllPublishedPosts } from '@lib/notionhq';
-import PostRow from '@components/PostRow';
-import { Post } from '@lib/types';
-import { NextSeo } from 'next-seo';
 import PageLayout from '@components/layout/PageLayout';
-import Typography from '@components/Typography';
+import PostRow from '@components/PostRow';
+import { css } from '@emotion/react';
+import { getPublishedPosts } from '@lib/notion/official';
+import { PostSummary } from '@lib/types';
+import { GetStaticPropsResult } from 'next';
+import { NextSeo } from 'next-seo';
+import React from 'react';
 
-interface Props {
-  posts: Post[];
+interface PageProps {
+  posts: PostSummary[];
 }
 
-export const getStaticProps = async (): Promise<
-  GetStaticPropsResult<Props>
-> => {
-  const posts = await getAllPublishedPosts();
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<PageProps>
+> {
+  const posts = await getPublishedPosts();
 
   return {
     props: {
@@ -22,9 +22,9 @@ export const getStaticProps = async (): Promise<
     },
     revalidate: 10,
   };
-};
+}
 
-const Home = ({ posts }: Props): JSX.Element => {
+function Home({ posts }: PageProps): JSX.Element {
   return (
     <>
       <NextSeo
@@ -34,17 +34,23 @@ const Home = ({ posts }: Props): JSX.Element => {
         }}
       />
       <PageLayout
-        title={<Typography>Latest</Typography>}
+        title="Posts"
         body={
           <>
-            {posts.slice(0, 5).map((post) => (
-              <PostRow key={post.id} post={post} />
+            {posts.map((post) => (
+              <PostRow
+                key={post.id}
+                css={css`
+                  margin-bottom: 64px;
+                `}
+                postSummary={post}
+              />
             ))}
           </>
         }
       />
     </>
   );
-};
+}
 
 export default Home;

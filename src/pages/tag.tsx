@@ -1,60 +1,58 @@
-import React from 'react';
-import { getCountOfPostsFromTags } from '@lib/notionhq';
-import { GetStaticPropsResult } from 'next';
-import NextLink from '@components/NextLink';
-import { NextSeo } from 'next-seo';
-import styled from '@theme/styled';
-import { PostTags } from '@lib/types';
 import PageLayout from '@components/layout/PageLayout';
-import Typography from '@components/Typography';
+import NextLink from '@components/NextLink';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { getAllPostsWithTag } from '@lib/notion/official';
+import { Tag } from '@lib/types';
+import SiteConfig from '@src/siteConfig';
+import { GetStaticPropsResult } from 'next';
+import { NextSeo } from 'next-seo';
+import React from 'react';
 
-interface Props {
-  counts: PostTags[];
+interface PageProps {
+  tags: Tag[];
 }
 
-export const getStaticProps = async (): Promise<
-  GetStaticPropsResult<Props>
-> => {
-  const counts = await getCountOfPostsFromTags();
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<PageProps>
+> {
+  const counts = await getAllPostsWithTag();
+
   return {
     props: {
-      counts,
+      tags: counts,
     },
     revalidate: 10,
   };
-};
+}
 
-const Tags = ({ counts }: Props): JSX.Element => {
+function Tags({ tags }: PageProps): JSX.Element {
   return (
     <>
       <NextSeo
-        title="Tags | Yongho kim"
-        canonical="https://yongho-kim.com/tag"
+        title="Tag | Yongho kim"
+        canonical={`${SiteConfig.url}/tag`}
         openGraph={{
-          title: 'Tags | Yongho kim',
+          title: 'Tag | Yongho kim',
         }}
       />
       <PageLayout
-        title={<Typography>Tags</Typography>}
+        title="Tags"
         body={
-          <StyledTagsList>
-            {counts.map(({ count, tagName }) => (
-              <li key={tagName}>
-                <StyledTag href={`/tag/${tagName}`}>
-                  {tagName} <span>({count})</span>
-                </StyledTag>
-              </li>
+          <FlexWrap>
+            {tags.map((tag) => (
+              <NextLink css={tagLinkCss} href={`/tag/${tag.label}`}>
+                {tag.label} <span>{tag.count}</span>
+              </NextLink>
             ))}
-          </StyledTagsList>
+          </FlexWrap>
         }
       />
     </>
   );
-};
+}
 
-export default Tags;
-
-const StyledTagsList = styled.ul`
+const FlexWrap = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -63,12 +61,14 @@ const StyledTagsList = styled.ul`
   padding: 0;
 `;
 
-const StyledTag = styled(NextLink)`
-  color: ${({ theme }) => theme.palette.emphasis};
+const tagLinkCss = css`
+  color: var(--palette-link);
   font-weight: 500;
 
   span {
-    color: ${({ theme }) => theme.text.plain};
+    color: var(--text-plain);
     font-weight: normal;
   }
 `;
+
+export default Tags;

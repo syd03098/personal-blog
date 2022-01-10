@@ -1,35 +1,49 @@
+import Button from '@components/Button';
+import NextLink from '@components/NextLink';
+import Header from '@components/post/header';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import React from 'react';
-import styled from '@theme/styled';
 
-const PageNotFound = (): JSX.Element => {
+function PageNotFound(): JSX.Element {
   return (
-    <>
-      <StyledPageNotFoundTitle>👀 404!</StyledPageNotFoundTitle>
-      <section>
-        <StyledPageNotFoundMessage>
-          해당페이지는 존재하지 않습니다. Url이 잘못 되었거나 삭제된
-          포스트입니다.
-        </StyledPageNotFoundMessage>
-        <StyledPageNotFoundMessage>
-          Current Page is not exist.
-        </StyledPageNotFoundMessage>
-        <StyledPageNotFoundMessage>
-          このページは存在しません。間違ったリンクまたは削除されたリンクかもしれません。
-        </StyledPageNotFoundMessage>
-      </section>
-    </>
+    <FlexColumn>
+      <Header>404</Header>
+      <p css={messageCss}>Current Page is not exist.</p>
+      <p css={messageCss}>このページは存在しません。</p>
+      <Button
+        css={buttonCss}
+        buttonType="inline"
+        buttonTheme="primary"
+        aria-label="back to home"
+      >
+        <NextLink href="/">Back to home</NextLink>
+      </Button>
+    </FlexColumn>
   );
-};
+}
 
-const StyledPageNotFoundTitle = styled.h1`
-  font-size: 40px;
-  font-weight: 800;
-  line-height: normal;
+const FlexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  padding-top: 20vh;
+  padding-bottom: 20vh;
 `;
 
-const StyledPageNotFoundMessage = styled.p`
+const messageCss = css`
   font-size: 16px;
-  font-weight: 500;
+  color: var(--text-plain);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+`;
+
+const buttonCss = css`
+  padding: 0 0.5rem;
+  margin: 0.5rem;
 `;
 
 export default PageNotFound;

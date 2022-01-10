@@ -1,28 +1,30 @@
+import Header from '@components/post/header';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import React, { ReactNode } from 'react';
-import styled from '@theme/styled';
 
 interface Props {
-  title?: ReactNode;
+  title: string;
   body: ReactNode;
 }
 
-const PageLayout = ({ title, body }: Props): JSX.Element => {
+function PageLayout({ title, body }: Props): JSX.Element {
   return (
-    <StyledContainer>
-      <StyledContentsHeader>{title}</StyledContentsHeader>
-      <>{body}</>
-    </StyledContainer>
+    <>
+      <Header css={titleCss}>{title}</Header>
+      <FlexColumn>{body}</FlexColumn>
+    </>
   );
-};
+}
 
-const StyledContainer = styled.div`
+const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
 
-const StyledContentsHeader = styled.div`
-  margin-bottom: 72px;
+const titleCss = css`
+  margin-bottom: 4.5rem;
 `;
 
 export default PageLayout;

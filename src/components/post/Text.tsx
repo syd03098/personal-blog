@@ -1,12 +1,14 @@
-import React from 'react';
+import NextLink from '@components/NextLink';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { Block, Decoration } from 'notion-types';
-import styled from '@theme/styled';
+import React from 'react';
 
 interface Props {
   block: Block;
 }
 
-const Text = ({ block }: Props): JSX.Element => {
+function Text({ block }: Props): JSX.Element {
   const values = block.properties.title as Decoration[];
   return (
     <>
@@ -19,9 +21,9 @@ const Text = ({ block }: Props): JSX.Element => {
         const innerContents = decoration.reduce((acc, current) => {
           switch (current[0]) {
             case 'c':
-              return <$InlineCode>{acc}</$InlineCode>;
+              return <Inline>{acc}</Inline>;
             case 'b':
-              return <$Bold>{acc}</$Bold>;
+              return <b>{acc}</b>;
             case 'i':
               return <i>{acc}</i>;
             case 's':
@@ -29,9 +31,9 @@ const Text = ({ block }: Props): JSX.Element => {
             case 'a': {
               const path = current[1];
               return (
-                <$Anchor href={path} target="_blank" rel="noreferrer">
+                <NextLink css={linkCss} href={path}>
                   {acc}
-                </$Anchor>
+                </NextLink>
               );
             }
             default:
@@ -44,26 +46,22 @@ const Text = ({ block }: Props): JSX.Element => {
       })}
     </>
   );
-};
+}
 
-const $Anchor = styled.a`
-  color: ${({ theme }) => theme.palette.emphasis};
+const linkCss = css`
+  color: var(--palette-link);
   text-decoration: none;
-  letter-spacing: normal;
-  word-break: break-word;
 `;
 
-const $InlineCode = styled.code`
-  font-family: 'PT Mono', 'Menlo', 'Source Code Pro', monospace;
-  color: ${({ theme }) => theme.text.plain};
+const Inline = styled.code`
+  font-family: var(--font-inline-code);
+  color: var(--text-plain);
   border-radius: 4px;
-  font-size: 90%;
+  font-size: 0.875em;
   padding: 3px 6px;
-  background-color: ${({ theme }) => theme.palette.inlineCodeBlock};
-`;
-
-const $Bold = styled.b`
-  color: ${({ theme }) => theme.text.header};
+  margin: 0 1px;
+  background-color: var(--palette-code-inline);
+  border: 1px solid var(--border-image);
 `;
 
 export default Text;

@@ -1,32 +1,40 @@
-import React, { ReactNode } from 'react';
-import Header from '@components/Header';
 import Footer from '@components/Footer';
-import styled from '@theme/styled';
+import Navigation from '@components/Navigation';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import React, { ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
 }
 
-const RootLayout = ({ children }: Props): JSX.Element => {
+function RootLayout({ children }: Props): JSX.Element {
   return (
-    <StyledLayout>
-      <Header />
-      <StyledContents>{children}</StyledContents>
-      <Footer />
-    </StyledLayout>
+    <>
+      <Navigation css={navigationCss} />
+      <Contents>
+        <main>{children}</main>
+        <Footer />
+      </Contents>
+    </>
   );
-};
+}
 
-const StyledLayout = styled.div`
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0 16px;
+const navigationCss = css`
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: var(--navigation);
+  border-bottom: 1px solid var(--border-navigation);
 `;
 
-const StyledContents = styled.main`
-  position: relative;
-  padding-top: 48px;
-  padding-bottom: 24px;
+const Contents = styled.div`
+  max-width: 48rem;
+  padding-top: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 0 auto;
 `;
 
 export default RootLayout;
