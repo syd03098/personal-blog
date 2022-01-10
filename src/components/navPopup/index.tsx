@@ -48,7 +48,12 @@ function NavPopup() {
         <ReakitMenuItem as="a" href="/tag" css={menuItemCss} {...props}>
           Tags
         </ReakitMenuItem>
-        <ReakitMenuItem as="a" href="/about" css={menuItemCss} {...props}>
+        <ReakitMenuItem
+          as="a"
+          href="https://github.com/syd03098"
+          css={menuItemCss}
+          {...props}
+        >
           About
         </ReakitMenuItem>
       </ReakitMenu>
