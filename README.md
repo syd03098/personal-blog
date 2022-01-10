@@ -1,12 +1,14 @@
 ## personal-blog
 
-* 제 개인 블로그입니다. 개발하면서 알아낸 것들, 혼자 기록해두기엔 아까운것들을 모아 공유하기위해 개발했습니다. 지속적으로 기능을 추가하고 최적화해나갈 예정입니다.
+* next.js로 제작한 개인 블로그입니다. 지속적으로 기능을 추가하고 최적화해나갈 예정입니다.
+* notion에서 제공하는 api를 활용하여 개인 워크스페이스에서 작성하는 글이 실시간으로 반영되도록 만들었습니다.
 
 ### 직접적으로 사용된 라이브러리들
 
 * `Nextjs`
 * `Typescript`
-* `styled-components`
+* `styled-components` -> `@emotion`
+  * (2022.01.11 emotion 으로 변경하게 되었다.)
 * `@notionhq/client`
 
 ### 많이 참고한 라이브러리
@@ -17,8 +19,9 @@
 
 * `vercel`
 
-### 차후 추가할 예정인 기능
+### future features
+- [x] next/image 최적화 (2022.01.11 update)
+- [x] dark mode & light mode switching (2022.01.11 update)
+- [ ] archive 내 검색기능
+- [ ] 방문자들이 많이 읽은 포스트 인기순위
 
-* dark mode & light mode switching
-* archive 내 검색기능
-* 방문자들이 많이 읽은 포스트 인기순위
