@@ -1,52 +1,58 @@
-import React from 'react';
-import { Post } from '@lib/types';
-import styled from '@theme/styled';
 import NextLink from '@components/NextLink';
-import Typography from '@components/Typography';
+import Header from '@components/post/header';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { PostSummary } from '@lib/types';
+import React from 'react';
 
 interface Props {
-  post: Post;
+  postSummary: PostSummary;
+  className?: string;
 }
 
-const PostRow = ({ post }: Props): JSX.Element => {
+function PostRow({ className, postSummary }: Props): JSX.Element {
   return (
-    <StyledPostRow>
-      <Typography type="sm">
-        <NextLink href={`/post/${post.id}`}>{post.title}</NextLink>
-      </Typography>
-      <StyledPostSummary>{post.summary}</StyledPostSummary>
-      <StyledPostTagList>
-        {post.tags.map((tag) => (
-          <StyledNextLink key={tag} href={`/tag/${tag}`}>
-            {tag}
-          </StyledNextLink>
-        ))}
-      </StyledPostTagList>
-    </StyledPostRow>
+    <div className={className}>
+      <Header type="sm">
+        <NextLink css={titleCss} href={`/post/${postSummary.id}`}>
+          {postSummary.title}
+        </NextLink>
+      </Header>
+      <Summary>{postSummary.summary}</Summary>
+      {postSummary.tags.length !== 0 && (
+        <TagWrap>
+          {postSummary.tags.map((tag) => (
+            <NextLink key={tag} css={blueTagCss} href={`/tag/${tag}`}>
+              {tag}
+            </NextLink>
+          ))}
+        </TagWrap>
+      )}
+    </div>
   );
-};
+}
 
-const StyledPostRow = styled.div`
-  position: relative;
-  margin-bottom: 48px;
-`;
-
-const StyledPostSummary = styled.p`
-  color: ${({ theme }) => theme.text.smoke};
+const Summary = styled.p`
+  color: var(--text-smoke);
   word-break: break-word;
-  margin-top: 16px;
+  margin-top: 8px;
   margin-bottom: 0;
 `;
 
-const StyledPostTagList = styled.div`
+const TagWrap = styled.div`
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 8px 16px;
 `;
 
-const StyledNextLink = styled(NextLink)`
+const titleCss = css`
+  color: var(--text-subHeader);
+`;
+
+const blueTagCss = css`
   font-size: 14px;
-  color: ${({ theme }) => theme.palette.emphasis};
+  color: var(--palette-link);
 `;
 
 export default PostRow;
