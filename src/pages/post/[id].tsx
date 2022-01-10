@@ -42,6 +42,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
         postSummary,
         recordMap,
       },
+      revalidate: 10,
     };
   } catch (_) {
     return {
