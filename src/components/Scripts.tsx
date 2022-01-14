@@ -11,6 +11,7 @@ function Scripts() {
             src="https://www.googletagmanager.com/gtag/js?id=G-BZBFZDEB95"
           />
           <Script
+            id="google"
             dangerouslySetInnerHTML={{
               __html: `
               window.dataLayer = window.dataLayer || [];
