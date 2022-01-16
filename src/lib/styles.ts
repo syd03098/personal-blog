@@ -8,3 +8,5 @@ export const blueLinkCss = css`
     text-underline-offset: 3px;
   }
 `;
+
+export default { blueLinkCss };
