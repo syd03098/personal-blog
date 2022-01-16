@@ -24,7 +24,8 @@ const FlexColumn = styled.div`
 `;
 
 const titleCss = css`
-  margin-bottom: 4.5rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 `;
 
 export default PageLayout;

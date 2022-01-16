@@ -27,17 +27,17 @@ const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  justify-content: center;
 
-  padding-top: 20vh;
-  padding-bottom: 20vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const messageCss = css`
   font-size: 16px;
   color: var(--text-plain);
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
   text-align: center;
 `;
 
