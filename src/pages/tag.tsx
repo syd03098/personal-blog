@@ -3,6 +3,7 @@ import NextLink from '@components/NextLink';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { getAllPostsWithTag } from '@lib/notion/official';
+import { blueLinkCss } from '@lib/styles';
 import { Tag } from '@lib/types';
 import SiteConfig from '@src/siteConfig';
 import { GetStaticPropsResult } from 'next';
@@ -41,7 +42,11 @@ function Tags({ tags }: PageProps): JSX.Element {
         body={
           <FlexWrap>
             {tags.map((tag) => (
-              <NextLink css={tagLinkCss} href={`/tag/${tag.label}`}>
+              <NextLink
+                key={tag.label}
+                css={tagLinkCss}
+                href={`/tag/${tag.label}`}
+              >
                 {tag.label} <span>{tag.count}</span>
               </NextLink>
             ))}
@@ -62,8 +67,7 @@ const FlexWrap = styled.ul`
 `;
 
 const tagLinkCss = css`
-  color: var(--palette-link);
-  font-weight: 500;
+  ${blueLinkCss};
 
   span {
     color: var(--text-plain);

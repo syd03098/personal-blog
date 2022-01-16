@@ -2,6 +2,7 @@ import NextLink from '@components/NextLink';
 import Header from '@components/post/header';
 import PublishedTime from '@components/post/summary/PublishedTime';
 import styled from '@emotion/styled';
+import { blueLinkCss } from '@lib/styles';
 import { Post } from '@lib/types';
 import React from 'react';
 
@@ -42,14 +43,7 @@ const FlexWrap = styled.ul`
 
 const TagItem = styled.li`
   font-size: 14px;
-  font-weight: 500;
-  color: var(--palette-link);
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
+  ${blueLinkCss};
 `;
 
 export default Summary;

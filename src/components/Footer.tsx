@@ -4,7 +4,7 @@ import React from 'react';
 
 function Footer(): JSX.Element {
   return (
-    <footer css={flexColumnCss}>
+    <footer css={footerCss}>
       <p css={paragraph}>© Yongho Kim 2021 All Rights Reserved.</p>
       <p css={paragraph}>
         Built by&nbsp;
@@ -22,11 +22,9 @@ function Footer(): JSX.Element {
   );
 }
 
-const flexColumnCss = css`
-  display: flex;
-  flex-direction: column;
+const footerCss = css`
   text-align: left;
-  margin: 36px 0;
+  padding: 36px 0;
 `;
 
 const paragraph = css`

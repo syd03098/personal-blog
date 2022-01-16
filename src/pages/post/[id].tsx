@@ -11,7 +11,6 @@ import { ExtendedRecordMap } from 'notion-types';
 import React from 'react';
 
 interface ArticleProps {
-  // id: string;
   postSummary: Post;
   recordMap: ExtendedRecordMap;
 }
@@ -38,7 +37,6 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 
     return {
       props: {
-        id: postId,
         postSummary,
         recordMap,
       },
@@ -71,7 +69,7 @@ function Article({ postSummary, recordMap }: ArticleProps): JSX.Element {
 }
 
 const summaryCss = css`
-  margin-bottom: 48px;
+  margin: 48px 0;
 `;
 
 export default Article;

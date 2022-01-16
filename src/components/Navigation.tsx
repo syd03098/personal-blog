@@ -74,10 +74,11 @@ const cssFlexSpaceBetween = css`
 
   margin: 0 auto;
   max-width: 48rem;
-  padding: 1rem;
+  padding: 0 1rem;
+  height: 72px;
 
   @media (max-width: 48rem) {
-    padding: 0.3rem 1rem;
+    height: 52px;
   }
 `;
 

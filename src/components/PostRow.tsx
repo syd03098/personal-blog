@@ -2,6 +2,7 @@ import NextLink from '@components/NextLink';
 import Header from '@components/post/header';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { blueLinkCss } from '@lib/styles';
 import { PostSummary } from '@lib/types';
 import React from 'react';
 
@@ -52,7 +53,7 @@ const titleCss = css`
 
 const blueTagCss = css`
   font-size: 14px;
-  color: var(--palette-link);
+  ${blueLinkCss};
 `;
 
 export default PostRow;
