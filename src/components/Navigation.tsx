@@ -52,7 +52,7 @@ function Navigation({ className }: Props) {
         </NextLink>
         <div css={cssFlexWrap}>
           <ThemeSwitch isDarkTheme={isDarkTheme} onClick={switchThemeHandler} />
-          <NavPopup />
+          <NavPopup linkList={linkList} />
           <Right>
             {linkList.map((link) => (
               <NextLink key={link.url} css={linkCss} href={link.url}>

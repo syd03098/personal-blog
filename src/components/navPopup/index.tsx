@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { menuCss, menuItemCss } from '@components/navPopup/styles';
 import styled from '@emotion/styled';
 import React from 'react';
 import {
@@ -8,7 +8,14 @@ import {
   useMenuState,
 } from 'reakit/Menu';
 
-function NavPopup() {
+interface Props {
+  linkList: {
+    label: string;
+    url: string;
+  }[];
+}
+
+function NavPopup({ linkList }: Props) {
   const props = useMenuState({ gutter: 4 });
 
   return (
@@ -25,37 +32,18 @@ function NavPopup() {
           <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
         </svg>
       </MenuButton>
-      <ReakitMenu
-        {...props}
-        aria-label="navigation"
-        css={css`
-          display: flex;
-          flex-direction: column;
-          border: 1px solid var(--border-default);
-          border-radius: 4px;
-
-          background-color: var(--palette-code-block);
-          overflow: hidden;
-          gap: 8px;
-          padding: 4px;
-          min-width: 12rem;
-
-          @media (min-width: 48rem) {
-            display: none;
-          }
-        `}
-      >
-        <ReakitMenuItem as="a" href="/tag" css={menuItemCss} {...props}>
-          Tags
-        </ReakitMenuItem>
-        <ReakitMenuItem
-          as="a"
-          href="https://github.com/syd03098"
-          css={menuItemCss}
-          {...props}
-        >
-          About
-        </ReakitMenuItem>
+      <ReakitMenu {...props} aria-label="navigation" css={menuCss}>
+        {linkList.map((link) => (
+          <ReakitMenuItem
+            key={link.label}
+            as="a"
+            href={link.url}
+            css={menuItemCss}
+            {...props}
+          >
+            {link.label}
+          </ReakitMenuItem>
+        ))}
       </ReakitMenu>
     </>
   );
@@ -77,21 +65,6 @@ const MenuButton = styled(ReakitMenuButton)`
   @media (min-width: 48rem) {
     display: none;
   }
-`;
-
-const menuItemCss = css`
-  display: flex;
-  align-items: center;
-  text-align: left;
-  flex: 0 0 auto;
-
-  color: var(--text-plain);
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  padding-inline: 0.8rem;
-  text-decoration: none;
-  user-select: none;
-  border-radius: 4px;
 `;
 
 export default NavPopup;
